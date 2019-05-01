@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Bullet {
+public class Pokeball {
 
     private static BufferedImage bulletImage;
     private float posX;
@@ -13,20 +13,20 @@ public class Bullet {
     private float speedX;
     private float speedY;
     private Rectangle bounding;
-    private List<Bullet> bullets;
+    private List<Pokeball> bullets;
     private float timeAlive;
 
     private float TIMETOLIVE = 10;
 
     static {
         try {
-            bulletImage = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("GFX/shoot.png"));
+            bulletImage = ImageIO.read(Pokeball.class.getClassLoader().getResourceAsStream("GFX/shoot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public Bullet(float x, float y, float speedx, float speedy, List<Bullet> bullets) {
+    public Pokeball(float x, float y, float speedx, float speedy, List<Pokeball> bullets) {
         this.posX = x;
         this.posY = y;
         this.speedX = speedx;

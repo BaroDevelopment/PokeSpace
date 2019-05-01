@@ -19,13 +19,13 @@ public class Player {
 
     private float timeSinceLastShot = 0;
 
-    private List<Bullet> bullets;
-    private List<Enemy> enemys;
+    private List<Pokeball> bullets;
+    private List<Charmander> enemys;
     private BufferedImage playerImage;
     private BufferedImage playerDeadImage;
     private boolean alive = true;
 
-    public Player(int x, int y, int worldsizeX, int worldsizeY, List<Bullet> bullets, List<Enemy> enemys) {
+    public Player(int x, int y, int worldsizeX, int worldsizeY, List<Pokeball> bullets, List<Charmander> enemys) {
         try {
             playerImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("GFX/ash.png"));
             playerDeadImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("GFX/ash_dead.png"));
@@ -62,11 +62,11 @@ public class Player {
 
         if (timeSinceLastShot > SHOTFREQUENZY && Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
             timeSinceLastShot = 0;
-            bullets.add(new Bullet(posX + playerImage.getWidth() / 2 - Bullet.getBulletImage().getWidth() / 2, posY + playerImage.getHeight() / 2 - Bullet.getBulletImage().getHeight() / 2, 500, 0, bullets));
+            bullets.add(new Pokeball(posX + playerImage.getWidth() / 2 - Pokeball.getBulletImage().getWidth() / 2, posY + playerImage.getHeight() / 2 - Pokeball.getBulletImage().getHeight() / 2, 500, 0, bullets));
         }
 
         for (int i = 0; i < enemys.size(); i++) {
-            Enemy e = enemys.get(i);
+            Charmander e = enemys.get(i);
 
             if (e.isAlive() && bounding.intersects(e.getBounding())) {
                 alive = false;

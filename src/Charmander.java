@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class Enemy {
+public class Charmander {
 	private static BufferedImage[] enemyImage = new BufferedImage[4];
 	private static BufferedImage enemyDeadImage;
 	private final static float NEEDEDANITIME = 0.5f;
@@ -14,24 +14,24 @@ public class Enemy {
 	private float posX;
 	private float posY;
 	private Rectangle bounding;
-	private List<Bullet> bullets;
+	private List<Pokeball> bullets;
 	private boolean alive = true;
 	private final static Random r = new Random();
 	private Player player;
 
 	static {
 		try {
-			enemyImage[0] = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("GFX/charmander_1.png"));
-			enemyImage[1] = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("GFX/charmander_2.png"));
-			enemyImage[2] = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("GFX/charmander_3.png"));
+			enemyImage[0] = ImageIO.read(Pokeball.class.getClassLoader().getResourceAsStream("GFX/charmander_1.png"));
+			enemyImage[1] = ImageIO.read(Pokeball.class.getClassLoader().getResourceAsStream("GFX/charmander_2.png"));
+			enemyImage[2] = ImageIO.read(Pokeball.class.getClassLoader().getResourceAsStream("GFX/charmander_3.png"));
 			enemyImage[3] = enemyImage[1];
-			enemyDeadImage = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("GFX/dead.png"));
+			enemyDeadImage = ImageIO.read(Pokeball.class.getClassLoader().getResourceAsStream("GFX/dead.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Enemy(float x, float y, List<Bullet> bullets, Player player) {
+	public Charmander(float x, float y, List<Pokeball> bullets, Player player) {
 		this.posX = x;
 		this.posY = y;
 		bounding = new Rectangle((int) x, (int) y, enemyImage[0].getWidth(), enemyImage[0].getHeight());
@@ -45,7 +45,9 @@ public class Enemy {
 			aniTime = 0;
 
 
-//		if(alive){  // Bewegungsmuster: Achsenanpassung
+		// Bewegungsmuster: Achsenanpassung
+
+//		if(alive){
 //			//Oben
 //			if(player.getY() - posY < -10){
 //				posY -= 100 * timeSinceLastFrame;
@@ -71,7 +73,9 @@ public class Enemy {
 //			alive = true;
 //		}
 
-		if(alive){ //Bewegungsmuster: Vektorbasierend
+		//Bewegungsmuster: Vektorbasierend
+
+		if(alive){
 
 			float speedX = player.getX() - posX;
 			float speedY = player.getY() - posY;
@@ -90,7 +94,7 @@ public class Enemy {
 
 
 		for(int i = 0; i < bullets.size(); i++){
-			Bullet b = bullets.get(i);
+			Pokeball b = bullets.get(i);
 
 			if(bounding.intersects(b.getBounding())){
 				alive = false;

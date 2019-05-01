@@ -5,7 +5,6 @@ public class Keyboard implements KeyListener {
 
     private static boolean[] keys = new boolean[512];
 
-    // getter für keys
     public static boolean isKeyDown(int keyCode) {
         if (keyCode >= 0 && keyCode < keys.length)
             return keys[keyCode];
@@ -31,7 +30,6 @@ public class Keyboard implements KeyListener {
         }
     }
 
-    // Wird nicht verwendet
     @Override
     public void keyTyped(KeyEvent e) {
     }
